@@ -3,6 +3,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTests {
@@ -32,7 +37,7 @@ public class MainTests {
 
     @Test
     public void testMain_Concat_emptyString_originalString() {
-        System.out.println("test main");
+        System.out.println("test mainConcat");
         final String original = "Alibaba or Alibubab?";
         final String argument = " ";
         final String result = original.concat(argument);
@@ -45,6 +50,20 @@ public class MainTests {
         final String original = "Alibaba or Alibubab? I do not know!";
         assertTrue(original.contains("bab"));
         assertTrue(original.contains("bub"));
+    }
+
+    @Test
+    public void testPosition() {
+        System.out.println("test position");
+        String original = "Alibaba or Alibubab? I do not know!";
+        assertThat(original, stringContainsInOrder(Arrays.asList("bab", "bub")));
+    }
+
+    @Test
+    public void testText() {
+        System.out.println("test text");
+        String original = "Alibaba or Alibubab? I do not know!";
+        assertThat(original, endsWith("know!"));
     }
 
 }
